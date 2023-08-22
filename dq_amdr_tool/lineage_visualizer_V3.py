@@ -154,7 +154,7 @@ class LineageVisualizer:
 
             self.aux = 0
 
-            while (self.aux < 2):
+            while (self.aux < 1):
                 self.data_catalogue_aux = self.data_catalogue
 
                 for index,row in self.lineage_data_df.iterrows():
@@ -166,7 +166,7 @@ class LineageVisualizer:
                             self.dependencies.loc[index, 'Remove'] = "X"
 
                 if(len(self.data_catalogue_aux) == len(self.data_catalogue)):
-                    self.aux = self.aux = self.aux+1
+                    self.aux = self.aux+1
 
             self.data_catalogue = pd.DataFrame(self.data_catalogue, columns=['UID'])
 

@@ -1,0 +1,190 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1>Data Flow Graph</h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1>Data Flow Graph</h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 1000px;
+                 height: 800px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+             #config {
+                 float: left;
+                 width: 400px;
+                 height: 600px;
+             }
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+            <div id="config"></div>
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "Policy Admin App", "label": "Policy Admin App", "shape": "square", "title": ""}, {"color": "#97c2fc", "id": "Claim Management App", "label": "Claim Management App", "shape": "square", "title": ""}, {"color": "#97c2fc", "id": "Accounting App", "label": "Accounting App", "shape": "square", "title": ""}, {"color": "#97c2fc", "id": "Data Warehouse", "label": "Data Warehouse", "shape": "circle", "title": ""}, {"color": "#97c2fc", "id": "Analytics Platform", "label": "Analytics Platform", "shape": "circle", "title": ""}, {"color": "#97c2fc", "id": "Document Management System", "label": "Document Management System", "shape": "circle", "title": ""}, {"color": "#97c2fc", "id": "Policy Data Table", "label": "Policy Data Table", "shape": "triangle-up", "title": "Data Owner: Underwriting Department\u003cbr\u003eControls: Audit Trail, Data Encryption"}, {"color": "#97c2fc", "id": "Claim Data Table", "label": "Claim Data Table", "shape": "triangle-up", "title": "Data Owner: Claim Management Team\u003cbr\u003eControls: Data Masking, Access Restrictions"}, {"color": "#97c2fc", "id": "Accounting Data Table", "label": "Accounting Data Table", "shape": "triangle-up", "title": "Data Owner: Finance Department\u003cbr\u003eControls: Version Control, Data Backup"}, {"color": "#97c2fc", "id": "Policy ID", "label": "Policy ID", "shape": "diamond", "title": "Critical Data Element: No"}, {"color": "#97c2fc", "id": "Claim Amount", "label": "Claim Amount", "shape": "diamond", "title": "Critical Data Element: Yes"}, {"color": "#97c2fc", "id": "Loss Reserve", "label": "Loss Reserve", "shape": "diamond", "title": "Critical Data Element: Yes"}, {"color": "#97c2fc", "id": "Premium", "label": "Premium", "shape": "diamond", "title": "Critical Data Element: No"}, {"color": "#97c2fc", "id": "Underwriting", "label": "Underwriting", "shape": "triangle-down", "title": ""}, {"color": "#97c2fc", "id": "Reserving", "label": "Reserving", "shape": "triangle-down", "title": ""}, {"color": "#97c2fc", "id": "Reinsurance", "label": "Reinsurance", "shape": "triangle-down", "title": ""}, {"color": "#97c2fc", "id": "Financial Reporting", "label": "Financial Reporting", "shape": "triangle-down", "title": ""}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "Policy Admin App", "to": "Data Warehouse"}, {"arrows": "to", "from": "Claim Management App", "to": "Data Warehouse"}, {"arrows": "to", "from": "Accounting App", "to": "Data Warehouse"}, {"arrows": "to", "from": "Data Warehouse", "to": "Policy Data Table"}, {"arrows": "to", "from": "Data Warehouse", "to": "Claim Data Table"}, {"arrows": "to", "from": "Data Warehouse", "to": "Accounting Data Table"}, {"arrows": "to", "from": "Data Warehouse", "to": "Analytics Platform"}, {"arrows": "to", "from": "Data Warehouse", "to": "Document Management System"}, {"arrows": "to", "from": "Policy Data Table", "to": "Policy ID"}, {"arrows": "to", "from": "Policy Data Table", "to": "Premium"}, {"arrows": "to", "from": "Claim Data Table", "to": "Claim Amount"}, {"arrows": "to", "from": "Claim Data Table", "to": "Loss Reserve"}, {"arrows": "to", "from": "Policy ID", "to": "Underwriting"}, {"arrows": "to", "from": "Claim Amount", "to": "Reinsurance"}, {"arrows": "to", "from": "Loss Reserve", "to": "Reserving"}, {"arrows": "to", "from": "Premium", "to": "Financial Reporting"}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": true,
+        "filter": [
+            "nodes",
+            "edges"
+        ]
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "barnesHut": {
+            "avoidOverlap": 0,
+            "centralGravity": 0.3,
+            "damping": 0.09,
+            "gravitationalConstant": -80000,
+            "springConstant": 0.001,
+            "springLength": 250
+        },
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+                  // if this network requires displaying the configure window,
+                  // put it in its div
+                  options.configure["container"] = document.getElementById("config");
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
+    <div style="background-color:#F5F5F5; padding:10px; border-radius:5px; width:200px;">
+        <h4>Node Types</h4>
+        <ul>
+            <li><span style="color:#1f77b4">&#x25A0;</span> Application</li>
+            <li><span style="color:#ff7f0e">&#x25CF;</span> System</li>
+            <li><span style="color:#2ca02c">&#9650;</span> Table</li>
+            <li><span style="color:#d62728">&#x2666;</span> Data Element</li>
+            <li><span style="color:#9467bd">&#9660;</span> Business Term</li>
+        </ul>
+    </div>
+    

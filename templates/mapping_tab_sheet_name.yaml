@@ -1,0 +1,9 @@
+tabs_to_kme_mapping:
+  'dq_business_rule_control': 'DQ - Business Rule & control'
+  'business_term': 'Data C - Business term'
+  'data_element': 'Data C - Data Element'
+  'application_system': 'Data C - Application & System'
+  'table_assets': 'Data C - Table'
+  'component_mapping': 'Lineage - Component Mapping'
+
+  # add here the rest of the mappings to add the relationship between the tab and the kme_definition entry

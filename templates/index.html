@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        #container {
+            display: flex;
+            height: 100vh;
+        }
+        #left {
+            width: 20%;
+            background-color: lightgray;
+        }
+        #right {
+            width: 80%;
+            background-color: white;
+            padding: 20px;
+        }
+    </style>
+    <link rel="stylesheet" href="https://pyscript.net/latest/pyscript.css" />
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+</head>
+<body>
+    <div id="container">
+        <div id="left">
+            <h2>Object List</h2>
+            <input type="text" id="filter-input" placeholder="Filter objects">
+            <ul id="object-list">
+                {% for obj in object_list %}
+                    <li>{{ obj }}</li>
+                {% endfor %}
+            </ul>
+            <button id="execute-button">Execute Python Code</button>
+        </div>
+        <div id="right">
+            <py-script>
+                import pandas as pd
+                import yaml
+                from pyvis.network import Network
+                import networkx as nx
+
+                net = Network(height="750px", width="100%", bgcolor="#222222", font_color="white")
+
+                nodes = ["a", "b", "c", "d"]
+                net.add_nodes(nodes)
+
+                net.show("gameofthrones.html")
+            </py-script>
+        </div>
+    </div>
+</body>
+</html>
