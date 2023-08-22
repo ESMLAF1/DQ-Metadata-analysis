@@ -1,0 +1,16 @@
+color_mapping:
+  'Business term': 'firebrick'
+  'Conceptual term': 'silver'
+  'Application': 'lightcoral'
+  'System': 'forestgreen'
+  'Table': 'lightsteelblue'
+  'Data Element': 'black'
+  'Control': 'gold'
+shape_mapping:
+  'Business Term': 'dot'
+  'Conceptual Term': 'dot'
+  'Application': 'dot'
+  'System': 'diamond'
+  'Table': 'square'
+  'Data Element': 'square'
+  'Control': 'triangleDown'

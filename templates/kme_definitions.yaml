@@ -1,0 +1,311 @@
+application_system:
+
+- name: Asset ID
+  front_end_value: ASSET_ID
+  back_end_value: ASSET_ID
+  description: Asset ID - Numeric item (auto-populated by the AMDR System)
+  data_type: string
+
+- name: Title
+  front_end_value: BUS_NAME
+  back_end_value: BUS_NAME
+  description: Title - Simple Text item - the title of the "Application" or "System"
+  data_type: string
+
+- name: Sub-Title
+  front_end_value: SUB_TITLE
+  back_end_value: SUB_TITLE
+  description: Simple Text item - the sub-title of the "Application" or "System"
+  data_type: string
+
+- name: Type of Asset
+  front_end_value: SUBCLASS
+  back_end_value: SUBCLASS
+  description: Drop Down - Should always be "Application" or "System" in this definition context
+  data_type: string
+
+- name: Asset Status
+  front_end_value: ASSET_STATUS
+  back_end_value: ASSET_STATUS
+  description: Drop Down - Should always be "Draft" within the first registering.
+  data_type: string
+
+- name: Business Process Entity
+  front_end_value: BUSINESS_PROCESS_ENTITY
+  back_end_value: BUSINESS_PROCESS_ENTITY
+  description: Drop Down - Either "Atradius" or "Credito y CauciÃ³n" should be selected.
+  data_type: string
+
+- name: Description
+  front_end_value: DESCR
+  back_end_value: DESCR
+  description: Free Text - Enter a description of the application being captured. The description should not be a circular definition. E.g. "Gross Written Premium Amount is the Amount of Gross Written Premium".
+  data_type: string
+
+- name: Granularity of Data
+  front_end_value: DATA_GRANULARITY
+  back_end_value: DATA_GRANULARITY
+  description: Drop Down - Select the granularity of data captured by the "Application" or "System".
+  data_type: string
+
+- name: Format
+  front_end_value: FORMAT
+  back_end_value: FORMAT
+  description: Drop Down - choose if the asset is a data "Source" or "Usage".
+  data_type: string
+
+- name: Update Frequency
+  front_end_value: UPDATE_FREQUENCY
+  back_end_value: UPDATE_FREQUENCY
+  description: Drop Down & Multi Select - To capture the Update frequency of the data. Single Example ["Daily"] Multi Example ["Daily","Monthly"]
+  data_type: string
+
+- name: Data Custodian
+  front_end_value: DATA_CUSTODIAN
+  back_end_value: DATA_CUSTODIAN
+  description: User - Insert the user's Atradius email
+  data_type: string
+
+- name: Data Subject Matter Expert
+  front_end_value: DATA_SME
+  back_end_value: DATA_SME
+  description: User - Insert the user's Atradius email
+  data_type: string
+
+- name: Data Consumers
+  front_end_value: DATA_CONSUMERS
+  back_end_value: DATA_CONSUMERS
+  description: List - the values of each data consumer within the Cell Single Example ["Data Governance"] Multi Example ["Data Governance","IRA"]
+  data_type: list
+
+- name: Important Business Service
+  front_end_value: IMPORTANT_BUSINESS_SERVICE
+  back_end_value: IMPORTANT_BUSINESS_SERVICE
+  description: Boolean - If the application is an IBS "True" otherwise enter "False".
+  data_type: boolean
+
+- name: Important Business Support Service
+  front_end_value: IMPORTANT_BUSINESS_SUPPORT_SERVICE
+  back_end_value: IMPORTANT_BUSINESS_SUPPORT_SERVICE
+  description: Boolean - If the application is an IBSS "True" otherwise enter "False".
+  data_type: boolean
+
+- name: Tags
+  front_end_value: TAGS
+  back_end_value: TAGS
+  description: String - appropriate Tags for the "Application" or "System" record. EG "Finance" or "Markets" etc. The following format is to be used in the cell Single Tag Example ["Business Glossary"] Multi Tag Example ["Delivery Point","Tax & Reg"]
+  data_type: string
+
+- name: Associated Process
+  front_end_value: ASSOCIATED_PROCESS
+  back_end_value: ASSOCIATED_PROCESS
+  description: Simple Text item - the name of the associated process, otherwise please default to "Atradius Estate"
+  data_type: string
+
+- name: CLASS
+  front_end_value: CLASS
+  back_end_value: CLASS
+  description:
+  data_type: string
+
+- name: UID
+  front_end_value: UID
+  back_end_value: UID
+  description:
+  data_type: string
+
+business_term:
+  - name: Asset ID
+    front_end_value: ASSET_ID
+    back_end_value: ASSET_ID
+    description: Asset ID - Numeric item (auto-populated by the AMDR System)
+    data_type: string
+
+  - name: Title
+    front_end_value: BUS_NAME
+    back_end_value: BUS_NAME
+    description: Title - Simple Text item - the title of the Term.
+    data_type: string
+
+  - name: Sub-Title
+    front_end_value: SUB_TITLE
+    back_end_value: SUB_TITLE
+    description: Simple Text item - the sub-title of the Term.
+    data_type: string
+
+  - name: Type of Asset
+    front_end_value: SUBCLASS
+    back_end_value: SUBCLASS
+    description: Drop Down - NB Either "Conceptual Term" or "Business Term" in this definition context - DO NOT EDIT.
+    data_type: string
+
+  - name: Asset Status
+    front_end_value: ASSET_STATUS
+    back_end_value: ASSET_STATUS
+    description: Drop Down - Should always be "Draft" within the first registering.
+    data_type: string
+
+  - name: Business Process Entity
+    front_end_value: BUSINESS_PROCESS_ENTITY
+    back_end_value: BUSINESS_PROCESS_ENTITY
+    description: Drop Down - Either "Atradius" or "Crédito y Caución" should be selected.
+    data_type: string
+
+  - name: Definition
+    front_end_value: DEFFINITION
+    back_end_value: DEFFINITION
+    description: Free Text - definition of the Term being captured.
+    data_type: string
+
+  - name: Synonyms
+    front_end_value: SYNONIMS
+    back_end_value: SYNONIMS
+    description: Simple Text item - Alternative names or terms associated with the main term.
+    data_type: string
+
+  - name: Acronyms
+    front_end_value: ACRONYMS
+    back_end_value: ACRONYMS
+    description: Simple Term - Any acronym or abbreviation for the term.
+    data_type: string
+
+  - name: Data Subject Matter Export
+    front_end_value: DATA_SME
+    back_end_value: DATA_SME
+    description: User - Insert the user's Atradius email.
+    data_type: string
+
+  - name: Tags
+    front_end_value: TAGS
+    back_end_value: TAGS
+    description: Drop Down - appropriate Tags for the Term, e.g. "Finance" or "Markets" etc.
+    data_type: string
+
+  - name: Associated Process
+    front_end_value: ASSOCIATED_PROCESS
+    back_end_value: ASSOCIATED_PROCESS
+    description: Simple Text item - the name of the associated process, else please default to "Atradius Estate".
+    data_type: string
+
+  - name: CLASS
+    front_end_value: CLASS
+    back_end_value: CLASS
+    description: Drop Down - NB The default class should be "Data Catalogue Element" and is pre-populated in the template - DO NOT EDIT.
+    data_type: string
+
+  - name: UID
+    front_end_value: UID
+    back_end_value: UID
+    description: Unique ID, composed by "[CLASS]_[SUBCLASS]_[BUS_NAME]", this reference should be unique and no blank spaces are allowed.
+    data_type: string
+
+table_assets:
+  - name: Asset ID
+    front_end_value: ASSET_ID
+    back_end_value: ASSET_ID
+    description: Asset ID - Numeric item (auto-populated by the AMDR System)
+    data_type: string
+
+  - name: Title
+    front_end_value: BUS_NAME
+    back_end_value: BUS_NAME
+    description: Title - Simple Text item - the title of the Table.
+    data_type: string
+
+  - name: Sub-Title
+    front_end_value: SUB_TITLE
+    back_end_value: SUB_TITLE
+    description: Simple Text item - the sub-title of the Table.
+    data_type: string
+
+  - name: Type of Asset
+    front_end_value: SUBCLASS
+    back_end_value: SUBCLASS
+    description: Drop Down - NB Should always be "Table" in this definition context - DO NOT EDIT.
+    data_type: string
+
+  - name: Asset Status
+    front_end_value: ASSET_STATUS
+    back_end_value: ASSET_STATUS
+    description: Drop Down - Should always be "Draft" within the first registering.
+    data_type: string
+
+  - name: Business Process Entity
+    front_end_value: BUSINESS_PROCESS_ENTITY
+    back_end_value: BUSINESS_PROCESS_ENTITY
+    description: Drop Down - Either "Atradius" or "Credito y Caución" should be selected.
+    data_type: string
+
+  - name: Description
+    front_end_value: DESCR
+    back_end_value: DESCR
+    description: "Free Text - Enter a description of the Table being captured.\nThe description should not be a circular definition. E.g. 'Gross Written Premium Amount is the Amount of Gross Written Premium'"
+    data_type: string
+
+  - name: Granularity of Data
+    front_end_value: DATA_GRANULARITY
+    back_end_value: DATA_GRANULARITY
+    description: Drop Down - Select the granularity of data captured by the Table.
+    data_type: string
+
+  - name: Format
+    front_end_value: FORMAT
+    back_end_value: FORMAT
+    description: Drop Down - choose if the "Source" or "Usage".
+    data_type: string
+
+  - name: Update Frequency
+    front_end_value: UPDATE_FREQUENCY
+    back_end_value: UPDATE_FREQUENCY
+    description: Drop Down - Capture the frequency of update for the asset.
+    data_type: string
+
+  - name: Data Owner
+    front_end_value: DATA_OWNER
+    back_end_value: DATA_OWNER
+    description: User - Insert the user's Atradius email.
+    data_type: string
+
+  - name: Data Steward
+    front_end_value: USER_LAST_MODIFIED
+    back_end_value: USER_LAST_MODIFIED
+    description: User - Insert the user's Atradius email.
+    data_type: string
+
+  - name: Data Custodian
+    front_end_value: DATA_CUSTODIAN
+    back_end_value: DATA_CUSTODIAN
+    description: User - Insert the user's Atradius email.
+    data_type: string
+
+  - name: Data Consumers
+    front_end_value: DATA_CONSUMERS
+    back_end_value: DATA_CONSUMERS
+    description: Drop Down - List of departments who consume the data.
+    data_type: string
+
+  - name: Tags
+    front_end_value: TAGS
+    back_end_value: TAGS
+    description: "String - appropriate Tags for the Table\nEG 'Finance' or 'Markets' etc."
+    data_type: string
+
+  - name: Associated Process
+    front_end_value: ASSOCIATED_PROCESS
+    back_end_value: ASSOCIATED_PROCESS
+    description: Simple Text item - the name of the associated process, else please default to 'Atradius Estate'.
+    data_type: string
+
+  - name: CLASS
+    front_end_value: CLASS
+    back_end_value: CLASS
+    description: Drop Down - NB The default class should be 'Data Object' and is pre-populated by default - DO NOT EDIT.
+    data_type: string
+
+  - name: UID
+    front_end_value: UID
+    back_end_value: UID
+    description: Unique ID, composed by '[CLASS]_ [SUBCLASS]_[BUS_NAME]', this reference should be unique and not blank spaces are allowed.
+    data_type: string
+
+
