@@ -149,6 +149,7 @@ if __name__ == "__main__":
     business_terms = metadata["Data C - Business term"]
     business_terms = pd.DataFrame.from_dict(business_terms)
     business_terms.columns = business_terms.columns.str.replace(' ', '_')
+    business_terms.columns = business_terms.columns.str.replace('-', '')
     data_elements = metadata["Data C - Data Element"]
     data_elements = pd.DataFrame.from_dict(data_elements)
     data_elements.columns = data_elements.columns.str.replace(' ', '_')
@@ -158,6 +159,7 @@ if __name__ == "__main__":
     tables = metadata["Data C - Table"]
     tables = pd.DataFrame.from_dict(tables)
     tables.columns = tables.columns.str.replace(' ', '_')
+    tables.columns = tables.columns.str.replace('-', '')
     controls = metadata["DQ - Business Rule & control"]
     controls = pd.DataFrame.from_dict(controls)
     controls.columns = controls.columns.str.replace(' ', '_')
