@@ -44,9 +44,13 @@ class GUIApp:
         # Right Frame
 
         # Create text box
-        self.textbox = tk.Text(self.right_frame, height=7, width=140, font='Helvetica 10 bold')
-        self.textbox.insert(tk.END,"Queriable tables:\n - business_terms\n - data_elements\n - application_systems\n - tables\n - controls\n - lineage")
-        self.textbox.pack()
+        #self.textbox = tk.Text(self.right_frame, height=7, width=140, font='Helvetica 10 bold')
+        #self.textbox.insert(tk.END,"Queriable tables:\n - business_terms\n - data_elements\n - application_systems\n - tables\n - controls\n - lineage")
+        #self.textbox.pack()
+
+        # Create button for ownership matrix query
+        self.ownership_execute_button = ttk.Button(self.right_frame, text="Show Ownership Matrix", command=self.show_ownership_matrix)
+        self.ownership_execute_button.pack()
 
         # Create query entry
         self.query_entry = ttk.Entry(self.right_frame)
@@ -79,6 +83,32 @@ class GUIApp:
         self.top_frame.grid(row=0,columnspan=2, sticky="nsew")
         self.left_frame.grid(row=1, column=0, sticky="nsew")
         self.right_frame.grid(row=1, column=1, sticky="nsew")
+
+    # Function to execute ownership matrix query
+    def show_ownership_matrix(self):
+        self.query = "select distinct subtitle, data_owner, data_Steward from tables where data_owner is not null"
+
+        for i in self.tree.get_children():
+            self.tree.delete(i)
+
+        self.cols = []
+
+        self.tree["columns"] = self.cols
+        for i in self.cols:
+            self.tree.column(i, anchor="w")
+            self.tree.heading(i, text=i, anchor='w')
+
+        self.query_df = duckdb.query(self.query).df()
+
+        self.cols = list(self.query_df.columns)
+
+        self.tree["columns"] = self.cols
+        for i in self.cols:
+            self.tree.column(i, anchor="w")
+            self.tree.heading(i, text=i, anchor='w')
+
+        for index, row in self.query_df.iterrows():
+            self.tree.insert("", 0, text=index, values=list(row))
 
     # Function to execute query
     def execute_query(self):
