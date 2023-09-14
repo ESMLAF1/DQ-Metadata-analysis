@@ -86,7 +86,7 @@ class GUIApp:
 
     # Function to execute ownership matrix query
     def show_ownership_matrix(self):
-        self.query = "select distinct subtitle, data_owner, data_Steward from tables where data_owner is not null"
+        self.query = "select distinct subtitle, data_owner, data_Steward from tables where data_owner is not null order by subtitle DESC"
 
         for i in self.tree.get_children():
             self.tree.delete(i)
