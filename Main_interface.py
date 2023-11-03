@@ -86,7 +86,7 @@ class GUIApp:
 
     # Function to execute ownership matrix query
     def show_ownership_matrix(self):
-        self.query = "select distinct subtitle, data_owner, data_Steward from tables where data_owner is not null order by subtitle DESC"
+        self.query = "select distinct subtitle as 'System - DataSource', data_owner, data_Steward, Data_Usage_Owner from tables where data_owner is not null order by subtitle DESC"
 
         for i in self.tree.get_children():
             self.tree.delete(i)
@@ -158,7 +158,6 @@ class GUIApp:
 
         # For demonstration, let's just open a dummy URL
         webbrowser.open_new_tab("lineage.html")
-
 if __name__ == "__main__":
     input_file_path = "data/Data_Quality_Management_Sytem.xlsx"
     kme_definitions_file_path = "kme_definitions.yaml"
@@ -197,12 +196,16 @@ if __name__ == "__main__":
     lineage = pd.DataFrame.from_dict(lineage)
     lineage.columns = lineage.columns.str.replace(' ', '_')
 
+    ownership_matrix = OwnershipMatrix(metadata)
+    ownership_matrix.create_matrix()
+    ownership_matrix.save_matrix_to_html("matrix_ownership.html")
+
     lineage_visualizer = LineageVisualizer(metadata)
     full_node_list = lineage_visualizer.create_node_list("None")
 
     full_node_list = full_node_list["UID"].values.tolist()
 
-    print(full_node_list)
+    #print(full_node_list)
 
     full_node_list.insert(0,"None")
 
